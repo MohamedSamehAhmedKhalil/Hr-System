@@ -1,0 +1,88 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "EMP.#####",
+ "creation": "2025-01-29 14:48:36.644153",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "attendance",
+  "designation",
+  "employee_name",
+  "day",
+  "in_time",
+  "out_time",
+  "total_time"
+ ],
+ "fields": [
+  {
+   "fieldname": "designation",
+   "fieldtype": "Data",
+   "label": "Designation"
+  },
+  {
+   "fieldname": "employee_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Employee Name",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "day",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Day"
+  },
+  {
+   "fieldname": "in_time",
+   "fieldtype": "Data",
+   "label": "in_time"
+  },
+  {
+   "fieldname": "out_time",
+   "fieldtype": "Data",
+   "label": "out_time"
+  },
+  {
+   "fieldname": "total_time",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "total time"
+  },
+  {
+   "fieldname": "attendance",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Attendance",
+   "options": "Attendance",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-02-03 17:29:11.641582",
+ "modified_by": "Administrator",
+ "module": "Sheet App",
+ "name": "Employee Report",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

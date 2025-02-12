@@ -1,0 +1,118 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "EMP - REP.#####",
+ "creation": "2025-02-04 15:05:11.492389",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "daily_report_section",
+  "sheet",
+  "code",
+  "employee_name",
+  "department",
+  "daydate",
+  "column_break_qsyk",
+  "in_time",
+  "out_time",
+  "total_working_hours",
+  "section_break_k4uu",
+  "comment"
+ ],
+ "fields": [
+  {
+   "fieldname": "code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Code"
+  },
+  {
+   "fieldname": "daydate",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Day/Date"
+  },
+  {
+   "fieldname": "in_time",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "In Time"
+  },
+  {
+   "fieldname": "out_time",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Out Time"
+  },
+  {
+   "fieldname": "column_break_qsyk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "comment",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Comment "
+  },
+  {
+   "fieldname": "total_working_hours",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Total Working Hours "
+  },
+  {
+   "fieldname": "daily_report_section",
+   "fieldtype": "Section Break",
+   "label": "Daily Report"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Department"
+  },
+  {
+   "fieldname": "section_break_k4uu",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "sheet",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Sheet",
+   "options": "Utilization Sheet",
+   "read_only": 1
+  },
+  {
+   "fieldname": "employee_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Employee Name",
+   "options": "Employee Info"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-02-09 16:10:58.666216",
+ "modified_by": "Administrator",
+ "module": "Sheet App",
+ "name": "Report Sheet",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

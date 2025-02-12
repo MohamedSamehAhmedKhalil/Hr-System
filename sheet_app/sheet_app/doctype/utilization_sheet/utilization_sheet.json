@@ -1,0 +1,148 @@
+{
+ "actions": [],
+ "autoname": "U.#####",
+ "creation": "2025-02-04 14:53:58.801487",
+ "default_view": "List",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "details_tab",
+  "name1",
+  "daydate",
+  "login_time",
+  "logout_time",
+  "total_time",
+  "column_break_pibu",
+  "vacation",
+  "connectivity_during_the_day",
+  "issues_and_problems_in_connectivity_happened",
+  "output",
+  "task_section_section",
+  "tasks_in_details_for_this_day"
+ ],
+ "fields": [
+  {
+   "fieldname": "daydate",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Day/Date"
+  },
+  {
+   "fieldname": "login_time",
+   "fieldtype": "Time",
+   "in_list_view": 1,
+   "label": "Login Time"
+  },
+  {
+   "fieldname": "logout_time",
+   "fieldtype": "Time",
+   "in_list_view": 1,
+   "label": "Logout Time"
+  },
+  {
+   "fieldname": "vacation",
+   "fieldtype": "Select",
+   "label": "Vacation ",
+   "options": "No\nYes"
+  },
+  {
+   "fieldname": "connectivity_during_the_day",
+   "fieldtype": "Data",
+   "label": "Connectivity During the day"
+  },
+  {
+   "fieldname": "issues_and_problems_in_connectivity_happened",
+   "fieldtype": "Select",
+   "label": "Issues and problems in connectivity happened ",
+   "options": "No\nYes"
+  },
+  {
+   "fieldname": "tasks_in_details_for_this_day",
+   "fieldtype": "Small Text",
+   "label": "Tasks in details for this day"
+  },
+  {
+   "fieldname": "output",
+   "fieldtype": "Data",
+   "label": "Output"
+  },
+  {
+   "fieldname": "column_break_pibu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "task_section_section",
+   "fieldtype": "Section Break",
+   "label": "Task Section"
+  },
+  {
+   "fieldname": "details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "total_time",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Total Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "name1",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Name",
+   "options": "Employee Info",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-02-10 17:14:02.242648",
+ "modified_by": "Administrator",
+ "module": "Sheet App",
+ "name": "Utilization Sheet",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Employee",
+   "share": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Manager",
+   "select": 1,
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

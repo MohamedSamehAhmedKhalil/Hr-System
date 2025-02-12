@@ -1,0 +1,271 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "EM.#####",
+ "creation": "2025-02-04 14:39:31.347459",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "user_information_section",
+  "first_name",
+  "middle_name",
+  "last_name",
+  "full_name",
+  "email",
+  "password",
+  "role",
+  "module_profile",
+  "code",
+  "personal_information_section",
+  "title",
+  "profile_photo",
+  "birthday",
+  "age",
+  "national_id",
+  "personal_number",
+  "work_number",
+  "address",
+  "column_break_aoou",
+  "department",
+  "team_leader",
+  "manager",
+  "joining_date",
+  "ending_date",
+  "projects",
+  "actual_position",
+  "section_break_ldkx",
+  "column_break_bevy",
+  "total_years_of_experience",
+  "actual_experience_at_hiring",
+  "relevant_years_of_experience",
+  "experience_at_isoft",
+  "graduation_year"
+ ],
+ "fields": [
+  {
+   "fieldname": "profile_photo",
+   "fieldtype": "Attach Image",
+   "label": "Profile Photo"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_ldkx",
+   "fieldtype": "Section Break",
+   "label": "Experience"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Department",
+   "options": "\nAdministrative\nBusiness  Analyst\nData Analytic\nDevOps\nFront End\nHyman Resources\nIT\nQuality Controls\nSoftware Developments\nSupport\nSWD-Mobile\nUX/UI\nInternship"
+  },
+  {
+   "fieldname": "team_leader",
+   "fieldtype": "Data",
+   "label": "Team Leader"
+  },
+  {
+   "fieldname": "manager",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Manager",
+   "options": "Employee Info"
+  },
+  {
+   "fieldname": "joining_date",
+   "fieldtype": "Date",
+   "label": "Joining Date"
+  },
+  {
+   "fieldname": "projects",
+   "fieldtype": "Data",
+   "label": "Projects"
+  },
+  {
+   "fieldname": "column_break_bevy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_years_of_experience",
+   "fieldtype": "Float",
+   "label": "Total Years of Experience"
+  },
+  {
+   "fieldname": "actual_experience_at_hiring",
+   "fieldtype": "Float",
+   "label": "Actual Experience at Hiring"
+  },
+  {
+   "fieldname": "relevant_years_of_experience",
+   "fieldtype": "Float",
+   "label": "Relevant Years of Experience"
+  },
+  {
+   "fieldname": "experience_at_isoft",
+   "fieldtype": "Float",
+   "label": "Experience at ISoft"
+  },
+  {
+   "fieldname": "graduation_year",
+   "fieldtype": "Date",
+   "label": "Graduation Year"
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "label": "Title"
+  },
+  {
+   "fieldname": "birthday",
+   "fieldtype": "Date",
+   "label": "Birthday"
+  },
+  {
+   "fieldname": "age",
+   "fieldtype": "Int",
+   "label": "Age",
+   "read_only": 1
+  },
+  {
+   "fieldname": "national_id",
+   "fieldtype": "Data",
+   "label": "National Id",
+   "unique": 1
+  },
+  {
+   "fieldname": "personal_number",
+   "fieldtype": "Phone",
+   "label": "Personal Number"
+  },
+  {
+   "fieldname": "work_number",
+   "fieldtype": "Phone",
+   "label": "Work Number"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "unique": 1
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address "
+  },
+  {
+   "fieldname": "column_break_aoou",
+   "fieldtype": "Column Break"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "personal_information_section",
+   "fieldtype": "Section Break",
+   "label": "Personal Information"
+  },
+  {
+   "fieldname": "actual_position",
+   "fieldtype": "Select",
+   "label": "Actual Position ",
+   "options": "\nFull Time\nTraining"
+  },
+  {
+   "fieldname": "ending_date",
+   "fieldtype": "Date",
+   "label": "Ending Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "role",
+   "fieldtype": "Link",
+   "label": "Role",
+   "options": "Role Profile"
+  },
+  {
+   "fieldname": "first_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "First Name"
+  },
+  {
+   "fieldname": "user_information_section",
+   "fieldtype": "Section Break",
+   "label": "User Information "
+  },
+  {
+   "fieldname": "middle_name",
+   "fieldtype": "Data",
+   "label": "Middle Name"
+  },
+  {
+   "fieldname": "last_name",
+   "fieldtype": "Data",
+   "label": "Last Name"
+  },
+  {
+   "fieldname": "password",
+   "fieldtype": "Data",
+   "label": "Password ",
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "module_profile",
+   "fieldtype": "Link",
+   "label": "Module Profile",
+   "options": "Module Profile",
+   "read_only": 1
+  },
+  {
+   "fieldname": "code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Code",
+   "unique": 1
+  },
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "in_standard_filter": 1,
+   "label": "Full Name",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-02-10 17:15:57.966975",
+ "modified_by": "Administrator",
+ "module": "Sheet App",
+ "name": "Employee Info",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Employee"
+  },
+  {
+   "read": 1,
+   "role": "Manager",
+   "select": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

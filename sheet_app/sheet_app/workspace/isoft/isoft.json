@@ -1,0 +1,69 @@
+{
+ "charts": [],
+ "content": "[{\"id\":\"esDTb8nwHy\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">ISoft</span>\",\"col\":12}},{\"id\":\"-ZOWuVVuQx\",\"type\":\"card\",\"data\":{\"card_name\":\"Utilization\",\"col\":4}}]",
+ "creation": "2025-02-04 16:17:36.967671",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "arrow-right",
+ "idx": 4,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "ISoft",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Utilization",
+   "link_count": 3,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Employee Info",
+   "link_count": 0,
+   "link_to": "Employee Info",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Utilization Sheet",
+   "link_count": 0,
+   "link_to": "Utilization Sheet",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Report ",
+   "link_count": 0,
+   "link_to": "Report Sheet",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2025-02-05 16:19:06.483223",
+ "modified_by": "Administrator",
+ "module": "Sheet App",
+ "name": "ISoft",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 7.0,
+ "shortcuts": [],
+ "title": "ISoft"
+}

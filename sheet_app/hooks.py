@@ -7,6 +7,33 @@ app_license = "mit"
 
 # Apps
 # ------------------
+#app_include_js = "/assets/sheet_app/js/redirect_user.js"
+#doctype_js = {
+#    "Attendance": "public/js/attendance_defaults.js"
+#}
+# hooks.py
+#has_permission = {
+#    "Employee": "sheet_app.sheet_app.doctype.employee.employee.validate_employee_permission"
+#}
+
+has_permission = {
+    "Employee": "sheet_app.utils.can_access_employee",
+    "Attendance": "sheet_app.utils.can_access_attendance",
+    "Employee Info": "sheet_app.api.can_access_employee",
+    "Utilization Sheet": "sheet_app.api.can_access_attendance",
+
+
+}
+
+#app_include_js = "/sheet_app/sheet_app/doctype/employee_report/employee_report_list.js"
+
+
+
+
+#override_whitelisted_methods = {
+    #"frappe.desk.reportview.get_list": "sheet_app.sheet_app.doctype.employee.employee.get_list"
+#}
+
 
 # required_apps = []
 
