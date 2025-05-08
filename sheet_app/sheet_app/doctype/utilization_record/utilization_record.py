@@ -3,10 +3,32 @@
 
 import frappe
 from frappe.model.document import Document
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
-class UtilizationSheet(Document):
+class UtilizationRecord(Document):
+	"""def calc_total_time(self):
+		if isinstance(self.login_time, str):
+			self.login_time = datetime.strptime(self.login_time, "%H:%M:%S").time()
+		
+		if isinstance(self.logout_time, str):
+			self.logout_time = datetime.strptime(self.logout_time, "%H:%M:%S").time()
+
+		today = datetime.today()
+		in_datetime = datetime.combine(today, self.login_time)
+		out_datetime = datetime.combine(today, self.logout_time)
+		
+		time_difference = out_datetime - in_datetime
+    	total_seconds = time_difference.total_seconds()
+
+		hours = int(total_seconds // 3600)
+    	minutes = int((total_seconds % 3600) // 60)
+
+		self.total_time = f"{hours} ساعة و {minutes} دقيقة"
+
+		if self.total_time < 0:
+				frappe.throw("Logout time must be later than login time.")"""
+	
 	def calc_total_time(self):
 		if isinstance(self.login_time, str):
 			self.login_time = datetime.strptime(self.login_time, "%H:%M:%S").time()
@@ -18,11 +40,12 @@ class UtilizationSheet(Document):
 		in_datetime = datetime.combine(today, self.login_time)
 		out_datetime = datetime.combine(today, self.logout_time)
 
-		time_difference = (out_datetime - in_datetime).total_seconds() / 3600  
-		self.total_time = round(time_difference, 2)
+		if out_datetime < in_datetime:
+			frappe.throw("Logout time must be later than login time.")
 
-		if self.total_time < 0:
-				frappe.throw("Logout time must be later than login time.")
+		time_difference = out_datetime - in_datetime
+
+		self.total_time = str(time_difference)
 
 	def update_employee_report(self):
 		report_name = frappe.db.get_value("Report Sheet", {"sheet": self.name}, "name")
@@ -38,6 +61,8 @@ class UtilizationSheet(Document):
 	def before_save(self):
 		self.calc_total_time()
 		self.update_employee_report()
+		#if self.status == "Approved":
+			#frappe.throw("Cannot edit approved record.")
 
 	def after_save(self):
 		self.update_employee_report()
@@ -76,4 +101,7 @@ class UtilizationSheet(Document):
 		})
 		new_record.insert(ignore_permissions=True)
 		#frappe.publish_realtime("refresh_employee_report")
+
+
+
 

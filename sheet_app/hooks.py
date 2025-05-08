@@ -20,7 +20,7 @@ has_permission = {
     "Employee": "sheet_app.utils.can_access_employee",
     "Attendance": "sheet_app.utils.can_access_attendance",
     "Employee Info": "sheet_app.api.can_access_employee",
-    "Utilization Sheet": "sheet_app.api.can_access_attendance",
+    "Utilization Record": "sheet_app.api.can_access_attendance",
 
 
 }

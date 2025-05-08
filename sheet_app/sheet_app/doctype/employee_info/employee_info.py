@@ -33,13 +33,9 @@ class EmployeeInfo(Document):
 				frappe.throw("National ID must be exactly 14 digits long.")     
 		self.calculate_age()
 		self.set_ending_date()
-		self.full_name = self.first_name +" " + self.middle_name +" " + self.last_name
+		self.full_name = " ".join(filter(None, [self.first_name, self.middle_name, self.last_name]))
 		if frappe.db.exists("Employee Info", {"code" : self.code , "name" : ["!=", self.name]}):
 			frappe.throw(f"code {self.code} already exists")
-		
-
-	#def before_save(self):
-		#self.full_name = self.first_name + " " + self.last_name
 		
 
 	def autoname(self):
@@ -65,7 +61,7 @@ class EmployeeInfo(Document):
 				"doctype": "User",
 				"email": self.email,
 				"first_name": self.first_name,
-				"middle_name": self.middle_name,
+				"middle_name": self.middle_name or " ",
 				"last_name": self.last_name,
 				"enabled": 1,
 				"send_welcome_email": 0,  
