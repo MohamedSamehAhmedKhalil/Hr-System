@@ -7,26 +7,34 @@ frappe.ui.form.on('Utilization Record', {
             frm.set_value('daydate', frappe.datetime.get_today());
         }
     },
-    
     refresh: function (frm) {
-        if (frm.doc.docstatus === 0 && frm.doc.status === 'Approved') {
-            frm.set_read_only();
-        }
+        if (frm.doc.status === 'Approved') {
+            /*frm.set_df_property("daydate", "read_only", 1);
+            frm.set_df_property("login_time", "read_only", 1);
+            frm.set_df_property("logout_time", "read_only", 1);
+            frm.set_df_property("total_time", "read_only", 1);
+            frm.set_df_property("vacation", "read_only", 1);
+            frm.set_df_property("connectivity_during_the_day", "read_only", 1);
+            frm.set_df_property("issues_and_problems_in_connectivity_happened", "read_only", 1);
+            frm.set_df_property("output", "read_only", 1);*/
+            
 
-        // زر الموافقة يظهر فقط بعد الحفظ
+            frm.set_read_only();
+            //frm.disable_save()
+            
+        }
         if (!frm.is_new() && frm.doc.status === 'Pending') {
             frappe.call({
-                method: "sheet_app.api.get_all_subordinates",
+                method: "sheet_app.api.get_approver_access",
                 args: {
-                    manager: frappe.session.user_email
+                    employee_name: frm.doc.name1
                 },
                 callback: function (r) {
-                    let subs = r.message || [];
-                    if (frm.doc.owner === frappe.session.user || subs.includes(frm.doc.name1)) {
+                    if (r.message === true){ 
                         frm.add_custom_button(__('Approve'), function () {
                             frappe.call({
                                 method: "sheet_app.api.approve_utilization",
-                                args: { names: [frm.doc.name] },
+                                args: { docnames: [frm.doc.name] },
                                 callback: function () {
                                     frappe.msgprint("Record Approved");
                                     frm.reload_doc();
@@ -36,6 +44,7 @@ frappe.ui.form.on('Utilization Record', {
                     }
                 }
             });
+            
         }
     }
 });

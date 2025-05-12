@@ -77,6 +77,9 @@ def approve_utilization(docnames):
         frappe.throw("You are not linked to any Employee record.")
 
     allowed_employees = get_all_subordinates(user_employee)
+    if not allowed_employees:
+            frappe.throw("You are not authorized to approve records because you are not a manager.")
+
     allowed_employees.append(user_employee)  # Include self
 
     approved = []
@@ -91,6 +94,42 @@ def approve_utilization(docnames):
 
         doc.status = "Approved"
         doc.save()
+
+        create_or_update_report_sheet(doc)
         approved.append(name)
 
     return {"approved": approved}
+
+@frappe.whitelist()
+def get_approver_access(employee_name):
+    user_email = frappe.db.get_value("User", frappe.session.user, "email")
+    user_employee = frappe.get_value("Employee Info", {"email": user_email}, "name")
+
+    if not user_employee:
+        return False
+
+    allowed_employees = get_all_subordinates(user_employee)
+    #allowed_employees.append(user_employee)  # Include self
+    if not allowed_employees:
+        return False
+    
+    return employee_name in allowed_employees or employee_name == user_employee
+
+def create_or_update_report_sheet(doc):
+    emp_info = frappe.get_doc("Employee Info", doc.name1)
+
+    report = frappe.new_doc("Report Sheet")
+    report.employee_name = emp_info.name
+    report.department = emp_info.department
+    report.code = emp_info.code
+    report.sheet = doc.name
+    report.daydate = doc.daydate
+    report.in_time = doc.login_time
+    report.out_time = doc.logout_time
+    report.total_working_hours = doc.total_time
+    #report.connectivity = doc.connectivity_during_the_day
+    #report.issues = doc.issues_and_problems_in_connectivity_happened
+    #report.output = doc.output
+
+    report.insert(ignore_permissions=True)
+

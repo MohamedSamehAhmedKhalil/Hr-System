@@ -47,6 +47,7 @@ class UtilizationRecord(Document):
 
 		self.total_time = str(time_difference)
 
+	"""
 	def update_employee_report(self):
 		report_name = frappe.db.get_value("Report Sheet", {"sheet": self.name}, "name")
 		
@@ -57,15 +58,19 @@ class UtilizationRecord(Document):
 				"out_time": self.logout_time,
 				"total_working_hours": self.total_time,
 			})
+	"""
 
 	def before_save(self):
 		self.calc_total_time()
-		self.update_employee_report()
-		#if self.status == "Approved":
-			#frappe.throw("Cannot edit approved record.")
+		#self.update_employee_report()
+		if self.name and frappe.db.exists(self.doctype, self.name):
+			old_status = frappe.db.get_value(self.doctype, self.name, "status")
+			if old_status == "Approved":
+				frappe.throw("Cannot modify an approved record.")
+		
 
-	def after_save(self):
-		self.update_employee_report()
+	#def after_save(self):
+		#self.update_employee_report()
 
 	def before_insert(self):
 		user_email = frappe.db.get_value("User", frappe.session.user, "email")
@@ -74,20 +79,20 @@ class UtilizationRecord(Document):
 			self.name1 = user_employee
 		else:
 			frappe.throw(f"{user_employee}")
-			frappe.throw("لا يمكن العثور على موظف مرتبط بالبريد الإلكتروني الخاص بك.")
+			frappe.throw("You are not linked to any Employee record.")
 
 	def after_insert(self):
-		user_email = frappe.db.get_value("User", frappe.session.user, "email")
-		user_employee = frappe.get_value("Employee Info", {"email": user_email}, "name")
-		dep_employee = frappe.get_value("Employee Info", {"email": user_email}, "department")
-		code_employee = frappe.get_value("Employee Info", {"email": user_email}, "code")
+		#user_email = frappe.db.get_value("User", frappe.session.user, "email")
+		#user_employee = frappe.get_value("Employee Info", {"email": user_email}, "name")
+		#dep_employee = frappe.get_value("Employee Info", {"email": user_email}, "department")
+		#code_employee = frappe.get_value("Employee Info", {"email": user_email}, "code")
 
 
 		self.calc_total_time()
 
 		#frappe.throw(f'{user_employee} {dep_employee}')
 
-		new_record = frappe.get_doc({
+		"""new_record = frappe.get_doc({
 			"doctype": "Report Sheet",
 			"code" :code_employee,
 			"employee_name": user_employee,
@@ -99,7 +104,7 @@ class UtilizationRecord(Document):
 			"total_working_hours": self.total_time,
 			
 		})
-		new_record.insert(ignore_permissions=True)
+		new_record.insert(ignore_permissions=True)"""
 		#frappe.publish_realtime("refresh_employee_report")
 
 

@@ -21,8 +21,6 @@ has_permission = {
     "Attendance": "sheet_app.utils.can_access_attendance",
     "Employee Info": "sheet_app.api.can_access_employee",
     "Utilization Record": "sheet_app.api.can_access_attendance",
-
-
 }
 
 #app_include_js = "/sheet_app/sheet_app/doctype/employee_report/employee_report_list.js"
