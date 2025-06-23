@@ -6,13 +6,14 @@ def can_access_employee(doc, ptype, user):
 
     user_email = frappe.db.get_value("User", frappe.session.user, "email")
     user_employee = frappe.get_value("Employee Info", {"email": user_email}, "name")
+    user_role = frappe.db.get_value("User", frappe.session.user, "role_profile_name")
 
     if not user_employee:
         frappe.throw("You are not linked to any Employee record.")
 
     subordinates = get_all_subordinates(user_employee)
 
-    if doc.name in subordinates or doc.name == user_employee:
+    if doc.name in subordinates or doc.name == user_employee or user_role == "HR":
         return True
 
     frappe.throw("You are not authorized to access this employee.")
@@ -25,6 +26,7 @@ def can_access_attendance(doc, ptype, user):
 
     user_email = frappe.db.get_value("User", frappe.session.user, "email")
     user_employee = frappe.get_value("Employee Info", {"email": user_email}, "name")
+    user_role = frappe.db.get_value("User", frappe.session.user, "role_profile_name")
 
     if not user_employee:
         frappe.throw("You are not linked to any Employee record.")
@@ -38,7 +40,7 @@ def can_access_attendance(doc, ptype, user):
         subordinates = get_all_subordinates(user_employee)
         
         #frappe.throw(f'{user_employee } {doc.name1}')
-        if doc.name1 != user_employee and doc.name1 not in subordinates:
+        if doc.name1 != user_employee and doc.name1 not in subordinates and user_role != "HR":
             frappe.throw("You are not authorized to view this utilization record.")
 
     #if ptype in ["write", "delete"]:
@@ -70,14 +72,16 @@ def approve_utilization(docnames):
     if isinstance(docnames, str):
         docnames = frappe.parse_json(docnames)
 
+
     user_email = frappe.db.get_value("User", frappe.session.user, "email")
     user_employee = frappe.get_value("Employee Info", {"email": user_email}, "name")
+    user_role = frappe.db.get_value("User", frappe.session.user, "role_profile_name")
 
     if not user_employee:
         frappe.throw("You are not linked to any Employee record.")
 
     allowed_employees = get_all_subordinates(user_employee)
-    if not allowed_employees:
+    if (not allowed_employees) and (user_role != "HR"):
             frappe.throw("You are not authorized to approve records because you are not a manager.")
 
     allowed_employees.append(user_employee)  # Include self
@@ -104,13 +108,14 @@ def approve_utilization(docnames):
 def get_approver_access(employee_name):
     user_email = frappe.db.get_value("User", frappe.session.user, "email")
     user_employee = frappe.get_value("Employee Info", {"email": user_email}, "name")
+    user_role = frappe.db.get_value("User", frappe.session.user, "role_profile_name")
 
     if not user_employee:
         return False
 
     allowed_employees = get_all_subordinates(user_employee)
     #allowed_employees.append(user_employee)  # Include self
-    if not allowed_employees:
+    if (not allowed_employees) and (user_role != "HR"):
         return False
     
     return employee_name in allowed_employees or employee_name == user_employee

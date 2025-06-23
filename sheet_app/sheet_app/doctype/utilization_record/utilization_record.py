@@ -31,11 +31,18 @@ class UtilizationRecord(Document):
 	
 	def calc_total_time(self):
 		if isinstance(self.login_time, str):
-			self.login_time = datetime.strptime(self.login_time, "%H:%M:%S").time()
+			try:
+				self.login_time = datetime.strptime(self.login_time, "%H:%M:%S.%f").time()
+			except ValueError:
+				self.login_time = datetime.strptime(self.login_time, "%H:%M:%S").time()
 		
 		if isinstance(self.logout_time, str):
-			self.logout_time = datetime.strptime(self.logout_time, "%H:%M:%S").time()
+			try:
+				self.logout_time = datetime.strptime(self.logout_time, "%H:%M:%S.%f").time()
+			except ValueError:
+				self.logout_time = datetime.strptime(self.logout_time, "%H:%M:%S").time()
 
+				
 		today = datetime.today()
 		in_datetime = datetime.combine(today, self.login_time)
 		out_datetime = datetime.combine(today, self.logout_time)

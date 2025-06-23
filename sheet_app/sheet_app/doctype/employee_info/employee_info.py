@@ -37,6 +37,20 @@ class EmployeeInfo(Document):
 		if frappe.db.exists("Employee Info", {"code" : self.code , "name" : ["!=", self.name]}):
 			frappe.throw(f"code {self.code} already exists")
 		
+	def update_user(self):
+		if frappe.db.exists("User", {"email": self.email}):
+			user = frappe.get_doc("User", {"email": self.email})
+			
+			user.email = self.email
+			user.first_name = self.first_name
+			user.middle_name = self.middle_name or " "
+			user.last_name = self.last_name
+			user.role_profile_name = self.role
+
+			user.save(ignore_permissions=True)
+		
+	def before_save(self):
+		self.update_user()
 
 	def autoname(self):
 		if self.middle_name:
